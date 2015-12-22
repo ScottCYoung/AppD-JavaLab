@@ -1,0 +1,40 @@
+[Thread-0] 21 Dec 2015 16:53:51,576  INFO JavaAgent - ####################################################################################
+[Thread-0] 21 Dec 2015 16:53:51,576  INFO JavaAgent - Java Agent Directory [/home/ubuntu/AppDynamics/Agent/ver4.1.8.0]
+[Thread-0] 21 Dec 2015 16:53:51,576  INFO JavaAgent - Java Agent AppAgent directory [/home/ubuntu/AppDynamics/Agent/ver4.1.8.0]
+[Thread-0] 21 Dec 2015 16:53:51,577  INFO JavaAgent - Using Java Agent Version [Server Agent v4.1.8.0 GA #10101 r439159e67920b514b22b168c44967e1bebb02200 19-4.1.8.next-controller]
+[Thread-0] 21 Dec 2015 16:53:51,577  INFO JavaAgent - All agent classes have been pre-loaded
+[Thread-0] 21 Dec 2015 16:53:51,577  INFO JavaAgent - Using ASM v5.0.1
+[Thread-0] 21 Dec 2015 16:53:51,579  INFO AgentKernel - Starting Java Agent at Mon Dec 21 16:53:51 UTC 2015 ...
+[Thread-0] 21 Dec 2015 16:53:51,650  INFO XMLConfigManager - Orchestration is disabled - disabling virtualization resolvers by default.
+[Thread-0] 21 Dec 2015 16:53:51,680  INFO XMLConfigManager - Default Host Identifier Resolver using host name for unique host identifier [UbuntuServer140412]
+[Thread-0] 21 Dec 2015 16:53:51,684  INFO XMLConfigManager - Default IP Address Resolver found IP addresses [[fe80:0:0:0:2ec2:60ff:fe34:a1a7%2, 10.0.0.4]]
+[Thread-0] 21 Dec 2015 16:53:51,685  INFO XMLConfigManager - Full Agent Registration Info Resolver found system property [appdynamics.agent.applicationName] for application name [SE-Demo-Java-Lab]
+[Thread-0] 21 Dec 2015 16:53:51,685  INFO XMLConfigManager - Full Agent Registration Info Resolver found system property [appdynamics.agent.tierName] for tier name [tcpservertier]
+[Thread-0] 21 Dec 2015 16:53:51,686  INFO XMLConfigManager - Full Agent Registration Info Resolver found system property [appdynamics.agent.nodeName] for node name [tcpservernode]
+[Thread-0] 21 Dec 2015 16:53:51,694  INFO XMLConfigManager - Full Agent Registration Info Resolver using selfService [false]
+[Thread-0] 21 Dec 2015 16:53:51,702  INFO XMLConfigManager - Full Agent Registration Info Resolver using selfService [false]
+[Thread-0] 21 Dec 2015 16:53:51,703  INFO XMLConfigManager - Full Agent Registration Info Resolver using application name [SE-Demo-Java-Lab]
+[Thread-0] 21 Dec 2015 16:53:51,703  INFO XMLConfigManager - Full Agent Registration Info Resolver using tier name [tcpservertier]
+[Thread-0] 21 Dec 2015 16:53:51,703  INFO XMLConfigManager - Full Agent Registration Info Resolver using node name [tcpservernode]
+[Thread-0] 21 Dec 2015 16:53:51,711  WARN XMLConfigManager - XML Controller Info Resolver found invalid controller host information [] in controller-info.xml; Please specify a valid value if it is not already set in system properties.
+[Thread-0] 21 Dec 2015 16:53:51,712  WARN XMLConfigManager - XML Controller Info Resolver found invalid controller port information [] in controller-info.xml; Please specify a valid value if it is not already set in system properties.
+[Thread-0] 21 Dec 2015 16:53:51,721  WARN XMLConfigManager - XML Controller Info Resolver found invalid controller host information [] in controller-info.xml; Please specify a valid value if it is not already set in system properties.
+[Thread-0] 21 Dec 2015 16:53:51,721  WARN XMLConfigManager - XML Controller Info Resolver found invalid controller port information [] in controller-info.xml; Please specify a valid value if it is not already set in system properties.
+[Thread-0] 21 Dec 2015 16:53:51,739  INFO XMLConfigManager - XML Agent Account Info Resolver did not find account name. Using default account name [customer1]
+[Thread-0] 21 Dec 2015 16:53:51,739 ERROR XMLConfigManager - XML Agent Account Info Resolver did not find account access key.
+[Thread-0] 21 Dec 2015 16:53:51,759 ERROR JavaAgent - Could Not Start Java Agent, Disabling !!!!! 
+com.singularity.ee.agent.appagent.kernel.spi.c: Could not initialize configuration
+	at com.singularity.ee.agent.appagent.kernel.l.start(l.java:96)
+	at com.singularity.ee.agent.appagent.kernel.JavaAgent.initialize(JavaAgent.java:348)
+	at com.singularity.ee.agent.appagent.kernel.JavaAgent.initialize(JavaAgent.java:208)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at com.singularity.ee.agent.appagent.AgentEntryPoint$1.run(AgentEntryPoint.java:309)
+Caused by: com.singularity.ee.agent.configuration.a: Could not resolve agent-controller basic configuration
+	at com.singularity.ee.agent.appagent.kernel.config.xml.d.d(d.java:194)
+	at com.singularity.ee.agent.appagent.kernel.config.xml.d.<init>(d.java:148)
+	at com.singularity.ee.agent.appagent.kernel.config.m.a(m.java:24)
+	at com.singularity.ee.agent.appagent.kernel.l.start(l.java:91)
+	... 7 more

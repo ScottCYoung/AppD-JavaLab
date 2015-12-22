@@ -1,0 +1,64 @@
+<activities>
+    <producer enabled="true">
+        <instrumentation>
+            <class-name>com.appdynamics.selab.tcpclient.TCPClient</class-name>
+            <method-name>sendRequest</method-name>
+            <match-type>MATCHES_CLASS</match-type>
+        </instrumentation>
+        <identifiers>
+            <identifier name="identifier-0">
+                <data-gatherer-type>INVOKED</data-gatherer-type>
+                <user-defined-name>TCPClient-Lab</user-defined-name>
+                <transformer-type>USER_DEFINED_NAME</transformer-type>
+            </identifier>
+        </identifiers>
+        <correlation>
+            <instrumentation>
+                <class-name>com.appdynamics.selab.tcpclient.TCPClient</class-name>
+                <method-name>objectToBytes</method-name>
+                <match-type>MATCHES_CLASS</match-type>
+            </instrumentation>
+<!-- the pauload pointers section copied dir from Payload guide -->
+            <payload-pointer>
+                <data-gatherer-type>POSITION</data-gatherer-type>
+                <position>0</position>
+                <getter-chain>this</getter-chain>
+                <transformer-type>GETTER_METHODS</transformer-type>
+            </payload-pointer>
+<!-- the pauload pointers section copied dir from Payload guide -->
+<!-- The payload operation section is output from the correlator tool -->
+            <payload-operation>
+                <access-type>method</access-type>
+                <param-types>java.lang.String,java.lang.String</param-types>
+                <access-method>put</access-method>
+            </payload-operation>
+<!-- The payload operation section is output from the correlator tool -->
+        </correlation>
+    </producer>
+    <consumer enabled="true" identify-transaction="true">
+        <instrumentation>
+            <class-name>com.appdynamics.selab.tcpserver.TCPServer</class-name>
+            <method-name>receiveData</method-name>
+            <match-type>MATCHES_CLASS</match-type>
+        </instrumentation>
+        <identifiers>
+            <identifier name="identifier-1">
+                <data-gatherer-type>INVOKED</data-gatherer-type>
+                <user-defined-name>TCPServer-Lab</user-defined-name>
+                <transformer-type>USER_DEFINED_NAME</transformer-type>
+            </identifier>
+        </identifiers>
+        <correlation>
+            <payload-pointer>
+                <data-gatherer-type>RETURN</data-gatherer-type>
+                <getter-chain>getInnerPayload</getter-chain>
+                <transformer-type>GETTER_METHODS</transformer-type>
+            </payload-pointer>
+            <payload-operation>
+                <access-type>method</access-type>
+                <param-types>java.lang.String</param-types>
+                <access-method>get</access-method>
+            </payload-operation>
+        </correlation>
+    </consumer>
+</activities>

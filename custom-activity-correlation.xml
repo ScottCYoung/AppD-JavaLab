@@ -1,0 +1,54 @@
+<activities>
+    <producer>
+        <!--
+         The instrumentation element defines the custom exit point by specifying the method and class
+         -->
+        <instrumentation>
+            <class-name>ccom.appdynamics.selab.util.MessageProcessor</class-name>
+            <method-name>doSomethingSpecial</method-name>
+            <match-type>MATCHES_CLASS</match-type>
+        </instrumentation>
+        <!--
+         The following identifier element specifies how to name the custom exit point.
+         This is similar to how we define custom exit points from the UI.
+         -->
+        <identifiers>
+            <identifier name="BritishAirwaysSearch">
+                <data-gatherer-type>INVOKED</data-gatherer-type>
+                <getter-chain>this</getter-chain>
+                <user-defined-name>BritishAirwaysSearch</user-defined-name>
+                <transformer-type>USER_DEFINED_NAME</transformer-type>
+            </identifier>
+        </identifiers>
+        <!--
+         The following correlation element is where and how we add the correlation metadata
+         -->
+        <correlation>
+            <!--
+             This tells the BCIEngine exactly what to instrument to get hold of the outgoing payload
+             -->
+            <instrumentation>
+                <class-name>com.appdynamics.samples.FlightSearch</class-name>
+                <method-name>queryForStatusWithPayload</method-name>
+                <match-type>MATCHES_CLASS</match-type>
+            </instrumentation>
+            <!--
+             The payload-pointer element describes where in the payload to find the instrumentation point defined by the instrumentation element
+             -->
+            <payload-pointer>
+                <data-gatherer-type>POSITION</data-gatherer-type>
+                <position>0</position>
+                <getter-chain>this</getter-chain>
+                <transformer-type>GETTER_METHODS</transformer-type>
+            </payload-pointer>
+            <!--
+             The payload-operation instructs the BCIEngine exactly where to add the correlation metadata to the payload
+             -->
+            <payload-operation>
+                <access-type>method</access-type>
+                <access-method>setCorrelationKey</access-method>
+                <param-types>java.lang.String</param-types>
+            </payload-operation>
+        </correlation>
+    </producer>
+</activities>
