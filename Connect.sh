@@ -1,1 +1,1 @@
-ssh -i Java_Lab.pem ubuntu@31.220.67.69
+ssh -i Java_Lab.pem ubuntu@153.92.34.141

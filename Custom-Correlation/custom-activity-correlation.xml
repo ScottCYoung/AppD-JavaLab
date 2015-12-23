@@ -1,54 +1,54 @@
 <activities>
-    <producer>
-        <!--
-         The instrumentation element defines the custom exit point by specifying the method and class
-         -->
-        <instrumentation>
-            <class-name>ccom.appdynamics.selab.util.MessageProcessor</class-name>
-            <method-name>doSomethingSpecial</method-name>
-            <match-type>MATCHES_CLASS</match-type>
-        </instrumentation>
-        <!--
-         The following identifier element specifies how to name the custom exit point.
-         This is similar to how we define custom exit points from the UI.
-         -->
-        <identifiers>
-            <identifier name="BritishAirwaysSearch">
-                <data-gatherer-type>INVOKED</data-gatherer-type>
-                <getter-chain>this</getter-chain>
-                <user-defined-name>BritishAirwaysSearch</user-defined-name>
-                <transformer-type>USER_DEFINED_NAME</transformer-type>
-            </identifier>
-        </identifiers>
-        <!--
-         The following correlation element is where and how we add the correlation metadata
-         -->
-        <correlation>
-            <!--
-             This tells the BCIEngine exactly what to instrument to get hold of the outgoing payload
-             -->
-            <instrumentation>
-                <class-name>com.appdynamics.samples.FlightSearch</class-name>
-                <method-name>queryForStatusWithPayload</method-name>
-                <match-type>MATCHES_CLASS</match-type>
-            </instrumentation>
-            <!--
-             The payload-pointer element describes where in the payload to find the instrumentation point defined by the instrumentation element
-             -->
-            <payload-pointer>
-                <data-gatherer-type>POSITION</data-gatherer-type>
-                <position>0</position>
-                <getter-chain>this</getter-chain>
-                <transformer-type>GETTER_METHODS</transformer-type>
-            </payload-pointer>
-            <!--
-             The payload-operation instructs the BCIEngine exactly where to add the correlation metadata to the payload
-             -->
-            <payload-operation>
-                <access-type>method</access-type>
-                <access-method>setCorrelationKey</access-method>
-                <param-types>java.lang.String</param-types>
-            </payload-operation>
-        </correlation>
+    <producer enabled="true">
+      <instrumentation>
+          <class-name>com.appdynamics.selab.tcpclient.TCPClient</class-name>
+          <method-name>sendRequest</method-name>
+          <match-type>MATCHES_CLASS</match-type>
+      </instrumentation>
+      <identifiers>
+          <identifier name="identifier-0">
+              <data-gatherer-type>INVOKED</data-gatherer-type>
+              <user-defined-name>JavaLabClientTier</user-defined-name>
+              <transformer-type>USER_DEFINED_NAME</transformer-type>
+          </identifier>
+      </identifiers>
+      <correlation>
+          <instrumentation>
+              <class-name>com.appdynamics.selab.tcpclient.TCPClient</class-name>
+              <method-name>sendRequest</method-name>
+              <match-type>MATCHES_CLASS</match-type>
+          </instrumentation>
+          <payload-pointer>
+              <data-gatherer-type>POSITION</data-gatherer-type>
+              <getter-chain>this</getter-chain>
+              <position>0</position>
+              <transformer-type>GETTER_METHODS</transformer-type>
+          </payload-pointer>
+          <payload-operation>
+              <access-type>method</access-type>
+              <param-types>java.lang.String,java.lang.Object</param-types>
+              <access-method>put</access-method>
+          </payload-operation>
+      </correlation>
     </producer>
+    <consumer enabled="true" identify-transaction="true">
+      <instrumentation>
+          <class-name>com.appdynamics.selab.tcpserver.TCPServer</class-name>
+          <method-name>processPayload</method-name>
+          <match-type>MATCHES_CLASS</match-type>
+      </instrumentation>
+      <correlation>
+          <payload-pointer>
+              <data-gatherer-type>POSITION</data-gatherer-type>
+              <getter-chain>this</getter-chain>
+              <position>0</position>
+              <transformer-type>GETTER_METHODS</transformer-type>
+          </payload-pointer>
+        <payload-operation>
+            <access-type>method</access-type>
+            <param-types>java.lang.String</param-types>
+            <access-method>getInnerPayload</access-method>
+        </payload-operation>
+      </correlation>
+     </consumer>
 </activities>
